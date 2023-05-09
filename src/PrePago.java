@@ -18,7 +18,7 @@ public class PrePago extends Assinante{
 		float valorMinuto = 1.45f; 
 		float valorChamada = valorMinuto*duracao; 
 		
-		if (chamadas.length>numChamadas || creditos>valorChamada) {
+		if (chamadas.length>numChamadas && creditos>valorChamada) {
 			
 			Chamada chamada = new Chamada(date, duracao);
 			chamadas[numChamadas] = chamada;
@@ -30,5 +30,25 @@ public class PrePago extends Assinante{
 			System.out.println("Não foi possível realizar a chamada!");
 			
 		}
+	}
+	
+	public void recarregar(GregorianCalendar data, float valor) {
+		
+		if(recargas.length<=100) {
+			
+			Recarga recarga = new Recarga(data, valor);
+					recargas[numRecargas] = recarga;
+					numRecargas++;
+					creditos=creditos+valor;
+		}
+		else {
+			System.out.println("Não foi possível realizar a recarga!");
+		}
+		
+	}
+	
+	public void imprimirFatura(int mes) {
+		
+		
 	}
 }
