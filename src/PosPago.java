@@ -1,3 +1,4 @@
+import java.util.GregorianCalendar;
 
 public class PosPago extends Assinante{
 	
@@ -8,12 +9,12 @@ public class PosPago extends Assinante{
 		this.assinatura = assinatura;
 	}
 	
-	public void fazerChamada(GregorianCalendar data, int duracao) {
+	public void fazerChamada(GregorianCalendar date, int duracao) {
 		
 		float valorMinuto = 1.04f; 
 		float valorChamada = valorMinuto*duracao; 
 		
-		if (chamadas.length>numChamadas && creditos>valorChamada) {
+		if (chamadas.length>numChamadas && creditos > valorChamada) {
 			
 			Chamada chamada = new Chamada(date, duracao);
 			chamadas[numChamadas] = chamada;
@@ -21,6 +22,7 @@ public class PosPago extends Assinante{
 			creditos = creditos-valorChamada;
 		}
 		else {
+	
 			
 			System.out.println("Não foi possível realizar a chamada!");
 			
