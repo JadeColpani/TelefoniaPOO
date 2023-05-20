@@ -6,14 +6,14 @@ public class PrePago extends Assinante{
 	 private int numRecargas;
 	 private float creditos;
 
-	public PrePago(long cpf, String nome, int numero, Recarga[] recargas, int numRecargas, float creditos) {
+	public PrePago(long cpf, String nome, int numero, int numRecargas, float creditos) {
 		super(cpf, nome, numero);
 		this.recargas = new Recarga[100];
 		this.numRecargas = numRecargas;
 		this.creditos = creditos;
 	}
 	
-	public void fazerChamada(GregorianCalendar data, int duracao){
+	public void fazerChamada(GregorianCalendar date, int duracao){
 		
 		float valorMinuto = 1.45f; 
 		float valorChamada = valorMinuto*duracao; 
