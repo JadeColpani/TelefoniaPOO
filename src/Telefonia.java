@@ -6,15 +6,18 @@ public class Telefonia {
 	private int numPosPagos;
 	private PrePago[] prePagos;
 	private PosPago[] posPagos;
-	
+	public static Scanner input = new Scanner(System.in);
+
 	
 	public  Telefonia() {
 		this.prePagos = new PrePago[10];
 		this.posPagos = new PosPago[10];
+	
 		
 	}
 	
 	public void cadastrarAssinante() {
+		
 
         System.out.println("Selecione o tipo de assinante:");
         int tipoAssinante = input.nextInt();
@@ -197,7 +200,7 @@ public class Telefonia {
 
 public static void main(String[] args) {
     Telefonia telefonia = new Telefonia();
-    Scanner scanner = new Scanner(System.in);
+    //Scanner scanner = new Scanner(System.in);
 
     while (true) {
         System.out.println("Selecione uma opção:");
@@ -208,7 +211,7 @@ public static void main(String[] args) {
         System.out.println("5 - Imprimir faturas");
         System.out.println("0 - Sair");
 
-        int opcao = scanner.nextInt();
+        int opcao = input.nextInt();
 
         if (opcao == 0) {
             break;
@@ -220,6 +223,7 @@ public static void main(String[] args) {
                 break;
             case 2:
                 telefonia.listarAssinantes();
+                
                 break;
             case 3:
                 telefonia.fazerChamada();
@@ -236,4 +240,3 @@ public static void main(String[] args) {
     		}
 	}
 }
-
