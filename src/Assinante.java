@@ -18,8 +18,19 @@ public class Assinante {
         return cpf;
     }
     
-    @Override
+    public String getNome() {
+		return nome;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+
+	@Override
     public String toString() {
         return "CPF: " + this.cpf + ", Nome: " + this.nome + ", Numero: " + this.numero;
     }
+	
+ 
 }
