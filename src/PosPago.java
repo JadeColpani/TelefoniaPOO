@@ -35,13 +35,14 @@ public class PosPago extends Assinante{
 		System.out.println("Nome: " + getNome());
 		System.out.println("Numero: " + getNumero());
 		
-		Chamada[] c = chamadas;
-		for(int i=0;i<chamadas.length;i++) {
-			System.out.println("Data: "+c[i].getData().getTime());
-			System.out.println("Duracao: "+c[i].getDuracao());
-			float custo_ligacao = c[i].getDuracao() * 1.04f; 
+		for(int i=0;i<numChamadas;i++) {
+			if (chamadas[i].getData().get(GregorianCalendar.MONTH) == (mes-1)) {
+			System.out.println("Data: "+chamadas[i].getData().getTime());
+			System.out.println("Duracao: "+chamadas[i].getDuracao());
+			float custo_ligacao = chamadas[i].getDuracao() * 1.04f; 
 			System.out.println("Custo: R$ "+custo_ligacao);
 			totalFatura = totalFatura + custo_ligacao;
+			}
 		}
 
 		System.out.println("Valor da Assinatura: R$ "+this.assinatura);
