@@ -21,4 +21,4 @@ A classe Chamada representa uma chamada feita pelo assinante. Seus atributos inc
 Para utilizar o projeto, basta instanciar objetos das classes Assinante, PrePago, Recarga e Chamada e utilizar os métodos disponíveis em cada uma delas. É importante seguir as regras descritas nas orientações do projeto para garantir o funcionamento correto do sistema.
 
 # Autor
-Este projeto foi desenvolvido por Jade Colpani.
+Este projeto foi desenvolvido por Felipe Nascimento, Jade Colpani e Mari Diniz.
