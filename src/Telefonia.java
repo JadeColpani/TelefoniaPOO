@@ -8,72 +8,75 @@ import java.util.Scanner;
 public class Telefonia {
 
 	private int numAssinantes;
-	private static Assinante[] assinante;
+	private static Assinante[] assinantes;
 	public static Scanner input = new Scanner(System.in);
 
 	public Telefonia() {
-		this.assinante = new Assinante[20];
+		Telefonia.assinantes = new Assinante[20];
 	}
 
 	public void cadastrarAssinante(Assinante[] assinante) {
 
-		System.out.print("\n1 - PrePago");
-		System.out.print("\n2 - PosPago");
-		System.out.print("\n\nSelecione o tipo de assinante: ");
+		System.out.printf("\n1 - PrePago");
+		System.out.printf("\n2 - PosPago");
+		System.out.printf("\n\nSelecione o tipo de assinante: ");
 		int tipoAssinante = input.nextInt();
 	    input.nextLine();
 
-		System.out.print("\nInforme o CPF do assinante: ");
+		System.out.printf("\nInforme o CPF do assinante: ");
 		long cpf = input.nextLong();
 		input.nextLine();
 
-		System.out.print("\nInforme o nome do assinante: ");
+		System.out.printf("\nInforme o nome do assinante: ");
 		String nome = input.nextLine(); 
 
-		System.out.print("\nInforme o numero do telefone do assinante: ");
+		System.out.printf("\nInforme o numero do telefone do assinante: ");
 		int numero = input.nextInt();
 		input.nextLine();
 
 		if (tipoAssinante == 1) { // Pré-pago
-			if (numAssinantes < assinante.length) {
-				assinante[numAssinantes] = new PrePago(cpf, nome, numero);
+			if (numAssinantes < assinantes.length) {
+				assinantes[numAssinantes] = new PrePago(cpf, nome, numero);
 				numAssinantes++;
-				System.out.print("\nAssinante pre-pago cadastrado com sucesso!\n");
+				System.out.printf("\nAssinante pre-pago cadastrado com sucesso!\n\n");
 			} else {
-				System.out.print(
-						"\nNão foi possivel cadastrar o assinante. Limite maximo de assinantes pre-pagos atingido.\n");
+				System.out.printf(
+						"\nNão foi possivel cadastrar o assinante. Limite maximo de assinantes pre-pagos atingido.\n\n");
 			}
 		} else if (tipoAssinante == 2) { // Pós-pago
-			if (numAssinantes < assinante.length) {
-				assinante[numAssinantes] = new PosPago(cpf, nome, numero);
+			if (numAssinantes < assinantes.length) {
+				assinantes[numAssinantes] = new PosPago(cpf, nome, numero);
 				numAssinantes++;
-				System.out.print("\nAssinante pos-pago cadastrado com sucesso!\n");
+				System.out.printf("\nAssinante pos-pago cadastrado com sucesso!\n\n");
 			} else {
-				System.out.print(
-						"\nNao foi possível cadastrar o assinante. Limite máximo de assinantes pos-pagos atingido.\n");
+				System.out.printf(
+						"\nNao foi possível cadastrar o assinante. Limite máximo de assinantes pos-pagos atingido.\n\n");
 			}
 		} else {
-			System.out.print("\nOpcao invalida.\n");
+			System.out.printf("\nOpcao invalida.\n\n");
 		}
 	}
 
 	public void listarAssinantes() {
-		System.out.println("Pre pagos");
-		for (int i = 0; i < this.assinante.length; i++) {
-			if (this.assinante[i] != null && this.assinante[i] instanceof PrePago) {
-				System.out.println(assinante[i]);
+		System.out.printf("\nPre pagos\n");
+		for (int i = 0; i < Telefonia.assinantes.length; i++) {
+			if (Telefonia.assinantes[i] != null && Telefonia.assinantes[i] instanceof PrePago) {
+				System.out.println(assinantes[i]);
+				System.out.printf("\n");
 			}
 		}
 
-		System.out.println("Pos pagos");
-		for (int i = 0; i < this.assinante.length; i++) {
-			if (this.assinante[i] != null && this.assinante[i] instanceof PosPago) {
-				System.out.println(assinante[i]);
+		System.out.printf("\n");
+		System.out.printf("Pos pagos\n");
+		for (int i = 0; i < Telefonia.assinantes.length; i++) {
+			if (Telefonia.assinantes[i] != null && Telefonia.assinantes[i] instanceof PosPago) {
+				System.out.println(assinantes[i]);
+				System.out.printf("\n");
 			}
 		}
 	}
 
-	public void fazerChamada(Assinante[] assinante)  {
+	public void fazerChamada(Assinante[] assinantes)  {
 		
 		// solicita o tipo do assinante (pré-pago ou pós-pago)
 		System.out.println("Digite o tipo do assinante (pre ou pos):");
@@ -180,8 +183,8 @@ public class Telefonia {
 
 	private Assinante localizarAssinante(long cpf) {
 		for (int i = 0; i < numAssinantes; i++) {
-			if (assinante[i].getCpf() == cpf) {
-				return assinante[i];
+			if (assinantes[i].getCpf() == cpf) {
+				return assinantes[i];
 			}
 		}
 		return null;
@@ -194,14 +197,10 @@ public class Telefonia {
 		int mes = input.nextInt();
 		input.nextLine();
 
-		// Imprime as faturas dos assinantes pré-pagos
+		// Imprime as faturas dos assinantes
 		for (int i = 0; i < numAssinantes; i++) {
-			assinante[i].imprimirFatura(mes);
-		}
-
-		// Imprime as faturas dos assinantes pós-pagos
-		for (int i = 0; i < numAssinantes; i++) {
-			assinante[i].imprimirFatura(mes);
+			assinantes[i].imprimirFatura(mes);
+			System.out.print("\n");
 		}
 	}
 
@@ -227,29 +226,20 @@ public class Telefonia {
 
 			switch (opcao) {
 			case 1:
-				telefonia.cadastrarAssinante(assinante);
+				telefonia.cadastrarAssinante(assinantes);
 				break;
 			case 2:
 				telefonia.listarAssinantes();
 				break;
 			case 3:
-				// digite o cpf
-				// busque pelo cpf no vetor de assintantes // if( assinantes[i] instance of PrePago){}
-				// 
-				
-				telefonia.fazerChamada(assinante);
+				telefonia.fazerChamada(assinantes);
 				break;
 			case 4:
-				System.out.println("Digite o CPF do assinante:");
-				long cpf = input.nextLong();
-				input.nextLine();
-				
-				for(Assinante a : Telefonia.assinante) {
-					if(a instanceof PrePago && a.getCpf() == cpf) {
+				for(Assinante a : Telefonia.assinantes) {
+					if(a instanceof PrePago) {
 						telefonia.fazerRecarga((PrePago)a);
 					}
 				}
-				
 				break;
 			case 5:
 				telefonia.imprimirFaturas();
@@ -259,4 +249,3 @@ public class Telefonia {
 			}
 		}
 	}
-}
