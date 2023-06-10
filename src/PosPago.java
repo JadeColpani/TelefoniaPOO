@@ -8,6 +8,7 @@ public class PosPago extends Assinante{
 		super(cpf, nome, numero);
 	}
 	
+	@Override
 	public void fazerChamada(GregorianCalendar date, int duracao) {
 		
 		float valorMinuto = 1.04f; 
@@ -27,6 +28,7 @@ public class PosPago extends Assinante{
 		}
 	}
 	
+	@Override
 	public void imprimirFatura(int mes) {
 		
 		float totalFatura=0;
@@ -40,14 +42,15 @@ public class PosPago extends Assinante{
 			System.out.println("Data: "+chamadas[i].getData().getTime());
 			System.out.println("Duracao: "+chamadas[i].getDuracao());
 			float custo_ligacao = chamadas[i].getDuracao() * 1.04f; 
-			System.out.println("Custo: R$ "+custo_ligacao);
+			System.out.printf("Custo: R$ %.2f\n",custo_ligacao);
 			totalFatura = totalFatura + custo_ligacao;
 			}
 		}
 
 		System.out.println("Valor da Assinatura: R$ "+this.assinatura);
-		System.out.println("Total da Fatura: R$"+(totalFatura+this.assinatura));
+		System.out.printf("Total da Fatura: R$ %.2f\n", (totalFatura+this.assinatura));
 		
 	}
+
 
 }
